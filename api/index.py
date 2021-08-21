@@ -36,13 +36,13 @@ class WBO:
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        data= {}|[]
+        data= []
         path = self.path
         user = path.split('?tit=')[1]
         if user=='wb':
             data = WBO.reqs()
         else:
-            data = {"message":"参数有误","code":"-1"}
+            data.append({"message":"参数有误","code":"-1"})
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Content-type', 'application/json')
