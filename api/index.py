@@ -29,14 +29,14 @@ class WBO:
                 "hot_count": hot_N,
                 "hot_status": hot_status
             }
-            hot_all_databae.append(res_obj)
+            hot_all_databae.append(dict(res_obj))
         return hot_all_databae
 
 
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        data = {}
+        data= {}|[]
         path = self.path
         user = path.split('?tit=')[1]
         if user=='wb':
