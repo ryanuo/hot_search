@@ -22,7 +22,7 @@ class WBO:
             hot_T = re.search(
                 '<td class="td-02">(?P<Cnode>.*?)</td>', item, re.S)
             title = re.search(
-                '<a href(|_to)="(?P<link>.*?)".*?(?P<tit>.*?)</a>', hot_T.group('Cnode'), re.S)
+                '<a href(|_to)="(?P<link>.*?)".*?>(?P<tit>.*?)</a>', hot_T.group('Cnode'), re.S)
             hot_I = re.search(
                 '<td class="td-03"><i class="icon-txt icon-txt-\w+">(?P<hotI>.*?)</i></td>', item, re.S)
             hot_n = re.search('<span>(?P<CN>.*?)</span>',
