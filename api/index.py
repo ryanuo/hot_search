@@ -40,7 +40,7 @@ class handler(BaseHTTPRequestHandler):
         path = self.path
         user = path.split('?tit=')[1]
         if user=='wb':
-            data = WBO.reqs()
+            data = WBO().reqs()
         else:
             data.append({"message":"参数有误","code":"-1"})
         self.send_response(200)
