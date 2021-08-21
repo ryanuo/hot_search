@@ -9,7 +9,7 @@ hot_all_databae = []
 
 
 class WBO:
-    def __init__(self, url):
+    def __init__(self):
         self.url = 'https://s.weibo.com/top/summary?cate=realtimehot'
 
     def reqs(self):
@@ -38,9 +38,9 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         data = {}
         path = self.path
-        user = path.split('?tit=wb')[1]
+        user = path.split('?tit=')[1]
         if user=='wb':
-            data = WBO(user).reqs()
+            data = WBO.reqs()
         else:
             data = {"message":"参数有误","code":"-1"}
         self.send_response(200)

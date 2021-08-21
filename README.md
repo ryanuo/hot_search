@@ -7,7 +7,7 @@
 
 * 注册[vercel](https://vercel.com/)
 * fork到你的仓库, 右上角
-* 点击这里完成部署(一键部署)
+* 点击这里完成部署(一键部署)[一键](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2FRr210%2Fhot_search.git)
 
 ## 请求参数
 
@@ -20,4 +20,4 @@
 
 ### :copyright: License
 
-[![MIT](http://api.haizlin.cn/api?mod=interview&ctr=issues&act=generateSVG&type=a.svg)](https://github.com/Rr210/hot_search/LICENSE)
+[![MIT](http://api.haizlin.cn/api?mod=interview&ctr=issues&act=generateSVG&type=a.svg)](https://github.com/Rr210/hot_search/blob/master/LICENSE)
