@@ -1,2 +1,23 @@
-# hot_search
-热搜榜-python爬虫+正则re
+## 仓库简介
+
+* 微博热搜榜, 参数`wb`
+* 其他热搜待加入
+
+## 如何使用?
+
+* 注册[vercel](https://vercel.com/)
+* fork到你的仓库, 右上角
+* 点击这里完成部署(一键部署)
+
+## 请求参数
+
+* 配置好的地址+`api?tit=`+参数(仓库简介有参数信息)
+
+## 转载须知
+
+* 转载请标明出处
+* 如果觉得我写的程序对你小有帮助, 可以点个⭐⭐
+
+### :copyright: License
+
+[![MIT](http://api.haizlin.cn/api?mod=interview&ctr=issues&act=generateSVG&type=a.svg)](https://github.com/Rr210/hot_search/LICENSE)
