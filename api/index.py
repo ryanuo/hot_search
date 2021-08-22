@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import re, requests, json
 from http.server import BaseHTTPRequestHandler
+
 from bs4 import BeautifulSoup
 
 '''
@@ -71,6 +72,24 @@ class BDU:
         return hot_all_databae
 
 
+class S_360:
+    def __init__(self):
+        self.url = 'https://trends.so.com/top/realtime'
+
+    def reqs(self):
+        res = requests.get(self.url)
+        hot_all_search = []
+        data = {
+            "update": res.json()['data']['update'],
+            "result": []
+        }
+        for index, item in enumerate(res.json()['data']['result']):
+            item['link'] = 'https://www.so.com/s?ie=utf-8&src=zhishu&q=%s' % item['query']
+            data['result'].append(item)
+        hot_all_search.append(dict(data))
+        return hot_all_search
+
+
 # 监听路由
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -81,6 +100,8 @@ class handler(BaseHTTPRequestHandler):
             data = WBO().reqs()
         elif user == 'bd':
             data = BDU().reqs()
+        elif user == '360':
+            data = S_360().reqs()
         else:
             data.append({"message": "参数有误", "code": "-1"})
         self.send_response(200)
