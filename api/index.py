@@ -58,7 +58,7 @@ class BDU:
             tit = item.select('.c-single-text-ellipsis')
             img = item.select('img')[0]['src']
             hot_count = item.select('.hot-index_1Bl1a')
-            content = item.select('hot-desc_1m_jR large_nSuFU')[0].get_text()[:-6]
+            content = item.select('.hot-desc_1m_jR')[0].get_text()[:-6]
             res_obj = {
                 "id": index + 1,
                 "title": tit[0].get_text(),
