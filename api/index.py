@@ -1,8 +1,7 @@
 # -*- coding: UTF-8 -*-
-import re
-import requests
-import json
+import re, requests, json
 from http.server import BaseHTTPRequestHandler
+from bs4 import BeautifulSoup
 
 '''
 微博热搜爬取
@@ -30,7 +29,7 @@ class WBO:
             hot_N = '' if not hot_n else hot_n.group('CN')
             hot_status = '' if not hot_I else hot_I.group('hotI')
             res_obj = {
-                "id": index+1,
+                "id": index + 1,
                 "title": title.group('tit'),
                 "link": title.group('link'),
                 "hot_count": hot_N,
@@ -40,6 +39,39 @@ class WBO:
         return hot_all_databae
 
 
+'''
+百度热搜爬取
+'''
+
+
+class BDU:
+    def __init__(self):
+        self.url = 'https://top.baidu.com/board?tab=realtime'
+
+    def reqs(self):
+        res = requests.get(self.url)
+        html = BeautifulSoup(res.text, 'html.parser')
+        content = html.find_all('div', attrs={'class': 'category-wrap_iQLoo horizontal_1eKyQ'})
+        hot_all_databae = []
+        for index, item in enumerate(content):
+            a = item.select('.title_dIF3B')
+            tit = item.select('.c-single-text-ellipsis')
+            img = item.select('img')[0]['src']
+            hot_count = item.select('.hot-index_1Bl1a')
+            content = item.select('hot-desc_1m_jR large_nSuFU')[0].get_text()[:-6]
+            res_obj = {
+                "id": index + 1,
+                "title": tit[0].get_text(),
+                "link": a[0]['href'],
+                "hot_count": hot_count[0].get_text(),
+                "cover": img,
+                'content': content
+            }
+            hot_all_databae.append(dict(res_obj))
+        return hot_all_databae
+
+
+# 监听路由
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         data = []
@@ -47,6 +79,8 @@ class handler(BaseHTTPRequestHandler):
         user = path.split('?tit=')[1]
         if user == 'wb':
             data = WBO().reqs()
+        elif user == 'bd':
+            data = BDU().reqs()
         else:
             data.append({"message": "参数有误", "code": "-1"})
         self.send_response(200)
