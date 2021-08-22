@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 import re, requests, json
 from http.server import BaseHTTPRequestHandler
-
 from bs4 import BeautifulSoup
 
 '''
