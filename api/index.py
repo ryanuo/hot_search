@@ -11,9 +11,13 @@ from bs4 import BeautifulSoup
 class WBO:
     def __init__(self):
         self.url = 'https://s.weibo.com/top/summary?cate=realtimehot'
+        self.headers = {
+            "Cookie": "SINAGLOBAL=2991298991739.324.1624166232383; SUB=_2AkMXhkisf8NxqwJRmfkVyWjgZYh0yAzEieKh2rl3JRMxHRl-yT9jqncjtRB6PAZmQxLGgpci2mPosQesVaFGF5U1Ro-W; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9WW17gR2n9Dm9khJkkBaVpHl; UOR=,,www.google.com; _s_tentry=-; Apache=2652566463566.881.1634179765161; ULV=1634179765187:4:1:1:2652566463566.881.1634179765161:1629545690965; WBStorage=6ff1c79b|undefined",
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36'
+        }
 
     def reqs(self):
-        res = requests.get(self.url)
+        res = requests.get(self.url, headers=self.headers)
         res.encoding = 'utf8'
         hot_title = re.findall('<tr class="">(.*?)</tr>', res.text, re.S)
         hot_all_databae = []
@@ -109,3 +113,5 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(data, ensure_ascii=False).encode('utf-8'))
         return
+
+
